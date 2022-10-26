@@ -5,6 +5,6 @@ jobs:
   tsc-check:
     runs-on: ubuntu-latest
     steps:
-      - run: apt-get update -y && apt-get install -y nodejs@16.16.0
+      - run: sudo apt-get update -y && sudo apt-get install -y nodejs@16.16.0
       - run: tsc --clean .
 
