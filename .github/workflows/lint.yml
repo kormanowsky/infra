@@ -7,7 +7,7 @@ jobs:
     steps:
       - run: sudo apt-get update -y && sudo apt-get install -y curl
       - run: curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
-      - run: ~/.bash_profice &&  nvm install 16.16.0
+      - run: ~/.bash_profile &&  nvm install 16.16.0
       - run: sudo npm install ts-node
       - run: tsc --clean .
 
