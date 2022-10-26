@@ -2,13 +2,13 @@ on:
   push
 
 jobs:
-  tsc-check:
+  check:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: 16.16.0
-      - run: npm install ts-node
-      - run: tsc
-
+      - run: npm install
+      - run: npm run ts
+      - run: npm run lint
