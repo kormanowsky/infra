@@ -26,8 +26,8 @@ jobs:
             -s ticket_id="${{ secrets.TRACKER_TICKET }}" \
             -s action=update_ticket \
             -s update.summary="$(date +%d.%m.%Y) - ${{ github.ref_name }}" \
-            -s update.description=$( \
+            -s update.description="$( \
               echo "ответственный за релиз ${{ github.actor }}"; \
               echo "коммиты, попавшие в релиз:"; \
               bash scripts/print_commits.sh \
-            ) | xargs -0 python3 scripts/sync_with_tracker.py
+            )" | xargs -0 python3 scripts/sync_with_tracker.py
