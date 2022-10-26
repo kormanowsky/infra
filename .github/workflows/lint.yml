@@ -1,0 +1,8 @@
+on:
+  push
+
+jobs:
+  tsc check:
+    steps:
+      run: tsc --clean .
+
