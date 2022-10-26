@@ -4,5 +4,5 @@ on:
 jobs:
   tsc check:
     steps:
-      run: tsc --clean .
+      - run: tsc --clean .
 
