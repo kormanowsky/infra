@@ -9,6 +9,6 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16.16.0
-      - run: sudo npm install ts-node
+      - run: npm install ts-node
       - run: tsc --clean .
 
