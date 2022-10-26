@@ -6,8 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: sudo apt-get update -y && sudo apt-get install -y curl
-      - run: ls -lah ~
-      - run: nvm install 16.16.0
+      - run: ~/.nvm/nm.sh install 16.16.0
       - run: npm install ts-node
       - run: tsc --clean .
 
