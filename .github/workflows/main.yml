@@ -21,10 +21,10 @@ jobs:
       - uses: actions/checkout@v3
       - run: >
           jo \
-            org_id="${{ secrets.TRACKER_ORG_ID }}" \
-            token="${{ secrets.TRACKER_TOKEN }}" \
-            ticket_id="${{ secrets.TRACKER_TICKET_ID }}" \
-            action=update_ticket \
-            update.summary="$(date +%d.$m.$Y) - tag" \
-            update.description=description | xargs -0 python3 scripts/sync_with_tracker.py
+            -s org_id="${{ secrets.TRACKER_ORG_ID }}" \
+            -s token="${{ secrets.TRACKER_TOKEN }}" \
+            -s ticket_id="${{ secrets.TRACKER_TICKET_ID }}" \
+            -s action=update_ticket \
+            -s update.summary="$(date +%d.$m.$Y) - tag" \
+            -s update.description=description | xargs -0 python3 scripts/sync_with_tracker.py
 
