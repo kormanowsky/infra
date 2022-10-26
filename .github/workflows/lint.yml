@@ -10,5 +10,5 @@ jobs:
         with:
           node-version: 16.16.0
       - run: npm install ts-node
-      - run: tsc --clean .
+      - run: tsc
 
