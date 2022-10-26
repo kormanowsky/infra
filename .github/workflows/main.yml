@@ -12,3 +12,7 @@ jobs:
       - run: npm install
       - run: npm run ts
       - run: npm run lint
+  release:
+    needs: [check]
+    runs-on: ubuntu-latest
+    if: startsWith(github.event.ref, 'refs/tags/rc')
