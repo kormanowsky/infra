@@ -9,6 +9,7 @@ client = TrackerClient(token=config["token"], org_id=config["org_id"])
 issue = client.issues[config["ticket_id"]]
 
 if config["action"] == "update_ticket":
+    print(update["description"])
     issue.update(**config["update"])
 elif config["action"] == "add_comment":
     issue.comments.create(**config["comment"])
