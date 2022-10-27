@@ -19,7 +19,7 @@ jobs:
     env:
       TRACKER_ORG_ID: ${{ secrets.TRACKER_ORG_ID }}
       TRACKER_TOKEN: ${{ secrets.TRACKER_TOKEN }}
-      TRACKER_TICKER: ${{ secrets.TRACKER_TICKET }}
+      TRACKER_TICKET: ${{ secrets.TRACKER_TICKET }}
     steps:
       - run: sudo apt-get update -y && sudo apt-get install -y snapd && sudo snap install jo && pip install yandex_tracker_client
       - uses: actions/checkout@v3
