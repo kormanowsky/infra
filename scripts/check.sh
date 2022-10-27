@@ -1,4 +1,5 @@
 function main() {
+  echo ""
   echo "Installing packages"
   npm install
   echo "Running linter"
