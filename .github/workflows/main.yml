@@ -22,7 +22,7 @@ jobs:
       - run: git --no-pager log --oneline --format="%h %an %s"
       - run: bash scripts/print_commits.sh
       - run: >
-          jo -d . -- \
+          bash scripts/print_commits.sh | xargs -0 -J _commits_ jo -d . -- \
             -s org_id="${{ secrets.TRACKER_ORG_ID }}" \
             -s token="${{ secrets.TRACKER_TOKEN }}" \
             -s ticket_id="${{ secrets.TRACKER_TICKET }}" \
@@ -31,5 +31,4 @@ jobs:
             -s update.description="$( \
               echo "ответственный за релиз ${{ github.actor }}"; \
               echo "коммиты, попавшие в релиз:"; \
-              bash scripts/print_commits.sh \
-            )" | xargs -0 python3 scripts/sync_with_tracker.py
+            )_commits_" | xargs -0 python3 scripts/sync_with_tracker.py
