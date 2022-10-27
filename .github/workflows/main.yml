@@ -16,7 +16,7 @@ jobs:
   release:
     needs: [ check ]
     runs-on: ubuntu-latest
-    if: startsWith(github.ref_name, rc-0.0.)
+    if: startsWith(github.ref_name, 'rc-0.0.')
     env:
       TRACKER_ORG_ID: ${{ secrets.TRACKER_ORG_ID }}
       TRACKER_TOKEN: ${{ secrets.TRACKER_TOKEN }}
