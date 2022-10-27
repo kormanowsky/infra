@@ -1,3 +1,3 @@
 FROM ubuntu:latest
 
-COPY dist /app
+COPY build /app
