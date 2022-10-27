@@ -18,9 +18,9 @@ function main() {
     -s token="$TRACKER_TOKEN" \
     -s ticket_id="$TRACKER_TICKET" \
     -s action=update_ticket \
-    -s update.summary="Релиз $CI_REF_NAME от $(date +%d.%m.%Y)" \
+    -s update.summary="Релиз $REF_NAME от $(date +%d.%m.%Y)" \
     -s update.description="$(
-      echo "Ответственный за релиз: $CI_ACTOR"
+      echo "Ответственный за релиз: $ACTOR"
       echo "Коммиты, попавшие в релиз:"
       print_commits
     )" | xargs -0 python3 "$(dirname "$0")/sync_with_tracker.py"

@@ -21,8 +21,8 @@ jobs:
       TRACKER_ORG_ID: ${{ secrets.TRACKER_ORG_ID }}
       TRACKER_TOKEN: ${{ secrets.TRACKER_TOKEN }}
       TRACKER_TICKET: ${{ secrets.TRACKER_TICKET }}
-      СI_REF_NAME: ${{ github.ref_name }}
-      CI_ACTOR: ${{ github.actor }}
+      REF_NAME: ${{ github.ref_name }}
+      ACTOR: ${{ github.actor }}
     steps:
       - uses: actions/checkout@v3
         with:
@@ -30,4 +30,4 @@ jobs:
       - run: ./scripts/release.sh
       - uses: ishworkh/docker-image-artifact-upload@v1
         with:
-          image: ${{ github.ref_name }}
+          image: $REF_NAME
