@@ -1,15 +1,17 @@
 directory="$(dirname "$0")"
 
-function main(){
+function main() {
   echo ""
   echo "Updaing apt-get lists"
   sudo apt-get update -y
-  echo "Installing snapd, docker"
-  sudo apt-get install -y snapd docker
+  echo "Installing snapd"
+  sudo apt-get install -y snapd
   echo "Installing jo via snap"
   sudo snap install jo
   echo "Installing yandex_tracker_client via pip"
   pip install yandex_tracker_client
+  echo "Installing docker"
+  curl -sSL https://get.docker.com/ | sudo sh
   echo "Updating release ticket"
   . "$directory/update_ticket.sh"
   echo "Building app"

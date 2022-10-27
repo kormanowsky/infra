@@ -28,3 +28,6 @@ jobs:
         with:
           fetch-depth: 0
       - run: ./scripts/release.sh
+      - uses: ishworkh/docker-image-artifact-upload@v1
+        with:
+          image: ${{ github.ref_name }}
