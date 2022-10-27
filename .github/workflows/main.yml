@@ -30,4 +30,4 @@ jobs:
       - run: ./scripts/release.sh
       - uses: ishworkh/docker-image-artifact-upload@v1
         with:
-          image: $REF_NAME
+          image: ${{ github.ref_name }}
