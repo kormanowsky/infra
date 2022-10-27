@@ -19,6 +19,7 @@ jobs:
     steps:
       - run: sudo apt-get update -y && sudo apt-get install -y snapd && sudo snap install jo && pip install yandex_tracker_client
       - uses: actions/checkout@v3
+      - run: git --no-pager log --oneline --format="%h %an %s"
       - run: bash scripts/print_commits.sh
       - run: >
           jo -d . -- \
