@@ -11,8 +11,8 @@ jobs:
         with:
           node-version: 16.16.0
       - run: npm install
-      - run: npm run ts
       - run: npm run lint
+      - run: npm run ts
   release:
     needs: [check]
     runs-on: ubuntu-latest
@@ -20,9 +20,17 @@ jobs:
       TRACKER_ORG_ID: ${{ secrets.TRACKER_ORG_ID }}
       TRACKER_TOKEN: ${{ secrets.TRACKER_TOKEN }}
       TRACKER_TICKET: ${{ secrets.TRACKER_TICKET }}
+      СI_REF_NAME: ${{ github.ref_name }}
+      CI_ACTOR: ${{ github.actor }}
     steps:
-      - run: sudo apt-get update -y && sudo apt-get install -y snapd && sudo snap install jo && pip install yandex_tracker_client
+      - run: >
+          sudo apt-get update -y && sudo apt-get install -y snapd docker && \ 
+          sudo snap install jo && \
+          pip install yandex_tracker_client
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
       - run: ./scripts/update_ticket.sh
+      - run: npm run build
+      - run: docker build -t ${{ github.ref_name }} .
+      - run: ./scripts/docker_comment.sh
