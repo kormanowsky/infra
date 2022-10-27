@@ -1,1 +1,3 @@
-COPY dist /
+FROM ubuntu:latest
+
+COPY dist /app
