@@ -3,7 +3,7 @@ run-name: Запуск main для ${{ github.ref_name }}
 
 on:
   push:
-    tags: rc-0.0.*
+    tags:*
 
 jobs:
   check:
@@ -17,6 +17,7 @@ jobs:
   release:
     needs: [ check ]
     runs-on: ubuntu-latest
+    if: startsWith(github.ref_name, rc-0.0.)
     env:
       TRACKER_ORG_ID: ${{ secrets.TRACKER_ORG_ID }}
       TRACKER_TOKEN: ${{ secrets.TRACKER_TOKEN }}
