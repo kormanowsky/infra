@@ -1,5 +1,6 @@
 on:
-  push
+  push:
+    tags: rc-0.0.*
 
 jobs:
   check:
@@ -15,20 +16,11 @@ jobs:
   release:
     needs: [check]
     runs-on: ubuntu-latest
-    if: startsWith(github.event.ref, 'refs/tags/rc-0.0.')
+    env:
+      TRACKER_ORG_ID: ${{ secrets.TRACKER_ORG_ID }}
+      TRACKER_TOKEN: ${{ secrets.TRACKER_TOKEN }}
+      TRACKER_TICKER: ${{ secrets.TRACKER_TICKET }}
     steps:
       - run: sudo apt-get update -y && sudo apt-get install -y snapd && sudo snap install jo && pip install yandex_tracker_client
       - uses: actions/checkout@v3
-      - run: git --no-pager log --oneline --format="%h %an %s"
-      - run: bash scripts/print_commits.sh
-      - run: >
-          bash scripts/print_commits.sh | xargs -0 -J _commits_ jo -d . -- \
-            -s org_id="${{ secrets.TRACKER_ORG_ID }}" \
-            -s token="${{ secrets.TRACKER_TOKEN }}" \
-            -s ticket_id="${{ secrets.TRACKER_TICKET }}" \
-            -s action=update_ticket \
-            -s update.summary="$(date +%d.%m.%Y) - ${{ github.ref_name }}" \
-            -s update.description="$( \
-              echo "ответственный за релиз ${{ github.actor }}"; \
-              echo "коммиты, попавшие в релиз:"; \
-            )_commits_" | xargs -0 python3 scripts/sync_with_tracker.py
+      - run: ./scripts/update_ticket.sh
