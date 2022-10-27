@@ -26,3 +26,5 @@ function main() {
       print_commits
     )" | xargs -0 python3 "$(dirname "$0")/sync_with_tracker.py"
 }
+
+main
