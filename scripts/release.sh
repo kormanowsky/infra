@@ -15,7 +15,7 @@ function main() {
   echo "Updating release ticket"
   . "$directory/update_ticket.sh"
   echo "Building app"
-  npm1 install
+  npm install
   npm run build
   echo "Building image"
   docker build -t "$REF_NAME" "$(dirname "$directory")"
